@@ -241,6 +241,15 @@ final class VideoPlayer {
     return exoPlayer.getCurrentPosition();
   }
 
+  void setSpeed(double value) {
+      float bracketedValue = (float) value;
+      PlaybackParameters existingParam = exoPlayer.getPlaybackParameters();
+      PlaybackParameters newParameter =
+          new PlaybackParameters(bracketedValue, existingParam.pitch, existingParam.skipSilence);
+      exoPlayer.setPlaybackParameters(newParameter);
+  }
+
+
   @SuppressWarnings("SuspiciousNameCombination")
   private void sendInitialized() {
     if (isInitialized) {
